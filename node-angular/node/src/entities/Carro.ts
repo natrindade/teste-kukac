@@ -1,5 +1,6 @@
-import { Veiculo } from "./Veiculo";
+import { ICarro } from "./ICarro";
 
-export class Carro extends Veiculo {
+
+export class Carro implements ICarro {
 
 } 

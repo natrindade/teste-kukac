@@ -1,8 +1,7 @@
-import { Veiculo } from "./Veiculo";
+import { IMoto } from "./IMoto";
 
-export class Moto extends Veiculo {
-    
-    rodas?: number;
-    passageiros?: number;
+
+export class Moto implements IMoto {
+   
 
 } 
