@@ -1,3 +1,16 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="modelo">Modelo: </label>
+    <input id="modelo" type="text" formControlName="modelo">
+    <label for="anoFabricacao">Ano de Fabricacao: </label>
+    <input id="anoFabricacao" type="text" formControlName="anoFabricacao">
+    <label for="quantidadePortas">Quantidade de Portas: </label>
+    <input id="quantidadePortas" type="text" formControlName="quantidadePortas">
+    <label for="marca">Marca: </label>
+    <input id="marca" type="text" formControlName="marca">
+    <button type="submit">Salvar</button>
+
+</form>
+
 <ul>
-    <li *ngFor="let item of list">{{item.modelo}}</li>
+    <li *ngFor="let item of list">{{item.marca}} - {{item.modelo}}</li>
 </ul>

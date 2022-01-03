@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { CarroService } from './services/carro.service';
 
 @Component({
@@ -9,14 +10,40 @@ import { CarroService } from './services/carro.service';
 export class VeiculoComponent implements OnInit {
 
   public list: any[] = [];
+  public form: FormGroup = new FormGroup({
+    modelo: new FormControl(''),
+    anoFabricacao: new FormControl(''),
+    quantidadePortas: new FormControl(''),
+    marca: new FormControl(''),
+
+  })
 
   constructor(private service: CarroService) { }
 
   ngOnInit(): void {
-    this.service.get().subscribe(resultado=>{
+    this.loadList();
+
+  }
+
+  loadList(){
+    this.service.get().subscribe(resultado => {
       this.list = resultado.carros;
     })
 
   }
+  onSubmit(){
+    this.service.post({
+      carro:{
+        modelo:this.form.get('modelo')?.value,
+        anoFabricacao:this.form.get('anoFabricacao')?.value,
+        quantidadePortas:this.form.get('quantidadePortas')?.value,
+        marca:this.form.get('marca')?.value,
+        
+  
+      }
+    }).subscribe(()=>{
+      this.loadList()
+    })
 
+  }
 }

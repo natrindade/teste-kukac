@@ -12,5 +12,13 @@ export class CarroService {
     return this.http.get<any>('http://localhost:3000/api/carros');
 
   }
+
+  post(carro:any) {
+    return this.http.post<any>('http://localhost:3000/api/carros',carro);
+
+  }
+
+
+  
 }
 
