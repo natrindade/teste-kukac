@@ -1,67 +1,67 @@
 import StatusCodes from 'http-status-codes';
 import { Request, Response } from 'express';
 import { paramMissingError } from '@shared/constants';
-import CarroDao from '@daos/Carro/CarroDao';
+import MotoDao from '@daos/Moto/MotoDao';
 
-const carroDao = new CarroDao();
+const motoDao = new MotoDao();
 const { BAD_REQUEST, CREATED, OK } = StatusCodes;
 
-export class CarroController {
+export class MotoController {
 
     /**
-     * Get all carros.
+     * Get all motos.
      * 
      * @param req 
      * @param res 
      * @returns 
      */
     async getAll(req: Request, res: Response) {
-        const carros = await carroDao.getAll();
-        return res.status(OK).json({ carros });
+        const motos = await motoDao.getAll();
+        return res.status(OK).json({ motos });
     }
 
 
     /**
-     * Add one carro.
+     * Add one moto.
      * 
      * @param req 
      * @param res 
      * @returns 
      */
     async addOne(req: Request, res: Response) {
-        const { carro } = req.body;
-        if (!carro) {
+        const { moto } = req.body;
+        if (!moto) {
             return res.status(BAD_REQUEST).json({
                 error: paramMissingError,
             });
         }
-        await carroDao.add(carro);
+        await motoDao.add(moto);
         return res.status(CREATED).end();
     }
     
 
     /**
-     * Update one carro.
+     * Update one moto.
      * 
      * @param req 
      * @param res 
      * @returns 
      */
     async updateOne(req: Request, res: Response) {
-        const { carro } = req.body;
-        if (!carro) {
+        const { moto } = req.body;
+        if (!moto) {
             return res.status(BAD_REQUEST).json({
                 error: paramMissingError,
             });
         }
-        carro.id = Number(carro.id);
-        await carroDao.update(carro);
+        moto.id = Number(moto.id);
+        await motoDao.update(moto);
         return res.status(OK).end();
     }
 
 
     /**
-     * Delete one carro.
+     * Delete one moto.
      * 
      * @param req 
      * @param res 
@@ -69,7 +69,7 @@ export class CarroController {
      */
     async deleteOne(req: Request, res: Response) {
         const { id } = req.params;
-        await carroDao.delete(Number(id));
+        await motoDao.delete(Number(id));
         return res.status(OK).end();
     }
 
