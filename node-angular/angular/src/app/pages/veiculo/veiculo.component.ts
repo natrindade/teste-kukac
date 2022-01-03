@@ -15,6 +15,8 @@ export class VeiculoComponent implements OnInit {
     anoFabricacao: new FormControl(''),
     quantidadePortas: new FormControl(''),
     marca: new FormControl(''),
+    rodas: new FormControl(''),
+    passageiros: new FormControl('')
 
   })
 
