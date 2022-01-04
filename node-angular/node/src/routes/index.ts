@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { CarroController } from 'src/controllers/CarrosController';
 import { MotoController } from 'src/controllers/MotoController';
+import { PalindromosController } from 'src/controllers/PalindromosController';
 import { getAllUsers, addOneUser, updateOneUser, deleteOneUser } from './Users';
 
 
@@ -27,9 +28,17 @@ motoRouter.post('/', motoController.addOne);
 motoRouter.put('/', motoController.updateOne);
 motoRouter.delete('/:id', motoController.deleteOne);
 
+// Palindromo-route
+const palindromoRouter = Router();
+const palindromoController = new PalindromosController();
+palindromoRouter.post('/', palindromoController.inPut);
+
+
 // Export the base-router
 const baseRouter = Router();
 baseRouter.use('/users', userRouter);
 baseRouter.use('/carros', carroRouter);
 baseRouter.use('/motos', motoRouter);
+baseRouter.use('/palindromos', palindromoRouter);
+
 export default baseRouter;
